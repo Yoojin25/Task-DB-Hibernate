@@ -1,0 +1,4 @@
+rootProject.name = 'Task-API'
+include 'src:untitled'
+findProject(':src:untitled')?.name = 'untitled'
+
