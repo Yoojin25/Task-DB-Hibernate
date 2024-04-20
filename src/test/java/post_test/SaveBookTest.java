@@ -8,6 +8,7 @@ import models.response_positive.ResponsePositiveSaveAuthor;
 import models.response_positive.ResponsePositiveSaveBook;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import steps.asserts.AssertDatabase;
 import steps.asserts.AssertSaveBook;
 
 import static steps.DataGeneration.*;
@@ -28,9 +29,13 @@ public class SaveBookTest {
         RequestSaveAuthor author = new RequestSaveAuthor(firstNameData(), familyNameData(), secondNameData(), birthDate);
         ResponsePositiveSaveAuthor authorSave = saveAuthor(author, 201);
 
-        ResponsePositiveSaveBook book = saveBook(bookTitleData(), authorSave.getAuthorId(), 201);
+        String bookTitle = bookTitleData();
+
+        ResponsePositiveSaveBook book = saveBook(bookTitle, authorSave.getAuthorId(), 201);
 
         AssertSaveBook.checkSaveBook(book);
+
+        AssertDatabase.checkFindBookByTitle(bookTitle);
     }
 
     @Test

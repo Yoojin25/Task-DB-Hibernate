@@ -35,13 +35,13 @@ public class TableBookTest {
         AssertTableBook.checkListSize(books, 2);
 
 //      4 - получить созданную запись по названию книги и вывести ее в консоль. Проверить, что количество записей = 1
-        List<TableBook> bookByTitle = bookRepository.findByBookTitle("Книга_1");
+        List<TableBook> bookByTitle = bookRepository.findBookByTitle("Книга_1");
         System.out.println(bookByTitle);
 
         AssertTableBook.checkListSize(bookByTitle, 1);
 
 //      5 - удалить одну созданную запись
-        bookRepository.deleteByBookTitle("Книга_1");
+        bookRepository.deleteBookByTitle("Книга_1");
 
 //      6 - получить оставшуюся запись и вывести ее в консоль. Проверить, что количество записей = 1
         List<TableBook> lastBook = bookRepository.findAll();

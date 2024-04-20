@@ -7,6 +7,7 @@ import models.request.RequestSaveAuthor;
 import models.response_positive.ResponsePositiveSaveAuthor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import steps.asserts.AssertDatabase;
 import steps.asserts.AssertSaveAuthor;
 
 import static steps.DataGeneration.*;
@@ -27,5 +28,7 @@ public class SaveAuthorTest {
         ResponsePositiveSaveAuthor authorSave = saveAuthor(author, 201);
 
         AssertSaveAuthor.checkSaveAuthor(authorSave);
+
+        AssertDatabase.checkFindAuthorById(authorSave, birthDate);
     }
 }

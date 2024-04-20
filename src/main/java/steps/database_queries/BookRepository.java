@@ -51,7 +51,7 @@ public class BookRepository {
                 .getResultList();
     }
 
-    public List<TableBook> findByBookTitle(String bookTitle) {
+    public List<TableBook> findBookByTitle(String bookTitle) {
         final String hql = """
                 SELECT * FROM book
                 WHERE book_title = :bookTitle
@@ -62,7 +62,7 @@ public class BookRepository {
                 .getResultList();
     }
 
-    public void deleteByBookTitle(String bookTitle) {
+    public void deleteBookByTitle(String bookTitle) {
         final String hql = """
                 DELETE FROM book
                 WHERE book_title = :bookTitle
@@ -73,5 +73,16 @@ public class BookRepository {
                 .setParameter("bookTitle", bookTitle)
                 .executeUpdate();
         tr.commit();
+    }
+
+    public List<TableBook> findBookByAuthorId(long authorId) {
+        final String hql = """
+                SELECT * FROM book
+                WHERE author_id = :authorId
+                """;
+
+        return session.createNativeQuery(hql, TableBook.class)
+                .setParameter("authorId", authorId)
+                .getResultList();
     }
 }

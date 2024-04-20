@@ -8,6 +8,7 @@ import models.response_positive.Book;
 import models.response_positive.ResponsePositiveSaveAuthor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import steps.asserts.AssertDatabase;
 import steps.asserts.AssertGetBooks;
 
 import java.util.Arrays;
@@ -40,6 +41,8 @@ public class GetBooksTest {
         List<Book> books = getBooks(String.valueOf(authorSave.getAuthorId()), 200);
 
         AssertGetBooks.checkGetBooks(books, authorSave, titles, birthDate);
+
+        AssertDatabase.checkFindBooksByAuthorId(authorSave, titles);
     }
 
     @Test
